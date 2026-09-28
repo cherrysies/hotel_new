@@ -90,6 +90,7 @@
         <Button Grid.Row="4" 
                 Content="Войти" 
                 Height="50"
+                IsDefault="True" 
                 FontSize="16"
                 FontWeight="Bold"
                 Background="#1976D2"

@@ -5,17 +5,25 @@
     <UserControl.DataContext>
         <vm:RoomsViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/> <!-- 0: Фильтры -->
-            <RowDefinition Height="Auto"/> <!-- 1: Заголовок -->
-            <RowDefinition Height="Auto"/> <!-- 2: Кнопки CRUD -->
-            <RowDefinition Height="*"/>    <!-- 3: Таблица -->
+            <RowDefinition Height="Auto"/>
+            <!-- 0: Фильтры -->
+            <RowDefinition Height="Auto"/>
+            <!-- 1: Заголовок -->
+            <RowDefinition Height="Auto"/>
+            <!-- 2: Кнопки CRUD -->
+            <RowDefinition Height="*"/>
+            <!-- 3: Таблица -->
         </Grid.RowDefinitions>
 
         <!-- 0. Панель поиска и фильтров -->
-        <Border Grid.Row="0" Background="#F5F5F5" Padding="10" Margin="0,0,0,10" CornerRadius="4">
+        <Border Grid.Row="0"
+                Background="#F5F5F5"
+                Padding="10"
+                Margin="0,0,0,10"
+                CornerRadius="4">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -24,36 +32,56 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                    <TextBlock Text="Поиск:" Margin="0,0,0,5" FontWeight="SemiBold"/>
-                    <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Height="28" Padding="5,0"/>
+                <StackPanel Grid.Column="0"
+                        Margin="0,0,10,0">
+                    <TextBlock Text="Поиск:"
+                            Margin="0,0,0,5"
+                            FontWeight="SemiBold"/>
+                    <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                            Height="28"
+                            Padding="5,0"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Margin="0,0,10,0">
-                    <TextBlock Text="Тип номера:" Margin="0,0,0,5" FontWeight="SemiBold"/>
-                    <ComboBox ItemsSource="{Binding RoomTypes}" 
+                <StackPanel Grid.Column="1"
+                        Margin="0,0,10,0">
+                    <TextBlock Text="Тип номера:"
+                            Margin="0,0,0,5"
+                            FontWeight="SemiBold"/>
+                    <ComboBox ItemsSource="{Binding RoomTypes}"
                               DisplayMemberPath="Name"
                               SelectedValuePath="Id"
                               SelectedValue="{Binding SelectedRoomTypeId}"
-                              Width="150" Height="28"/>
+                              Width="150"
+                            Height="28"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2" Margin="0,0,10,0">
-                    <TextBlock Text="Статус:" Margin="0,0,0,5" FontWeight="SemiBold"/>
-                    <ComboBox ItemsSource="{Binding Statuses}" 
+                <StackPanel Grid.Column="2"
+                        Margin="0,0,10,0">
+                    <TextBlock Text="Статус:"
+                            Margin="0,0,0,5"
+                            FontWeight="SemiBold"/>
+                    <ComboBox ItemsSource="{Binding Statuses}"
                               SelectedIndex="{Binding SelectedStatusId}"
-                              Width="150" Height="28"/>
+                              Width="150"
+                            Height="28"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="3">
-                    <TextBlock Text="Сортировка:" Margin="0,0,0,5" FontWeight="SemiBold"/>
+                    <TextBlock Text="Сортировка:"
+                            Margin="0,0,0,5"
+                            FontWeight="SemiBold"/>
                     <StackPanel Orientation="Horizontal">
                         <ComboBox ItemsSource="{Binding SortOptions}"
                                   DisplayMemberPath="DisplayName"
                                   SelectedValuePath="PropertyName"
                                   SelectedValue="{Binding SortProperty}"
-                                  Width="120" Height="28"/>
-                        <Button Content="↑↓" Width="30" Height="28" Margin="5,0,0,0" ToolTip="Изменить направление"
+                                  Width="120"
+                                Height="28"/>
+                        <Button Content="↑↓"
+                                Width="30"
+                                Height="28"
+                                Margin="5,0,0,0"
+                                ToolTip="Изменить направление"
                                 Click="BtnToggleSort_Click"/>
                     </StackPanel>
                 </StackPanel>
@@ -61,36 +89,131 @@
         </Border>
 
         <!-- 1. Заголовок списка -->
-        <TextBlock Grid.Row="1" Text="Каталог номеров" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+        <TextBlock Grid.Row="1"
+                Text="Каталог номеров"
+                FontSize="18"
+                FontWeight="Bold"
+                Margin="0,0,0,10"/>
 
         <!-- 2. Панель управления (активна только для админа) -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
-            <Button Content="Добавить номер" Width="120" Height="28" Margin="0,0,10,0" 
-                    Command="{Binding AddRoomCommand}" IsEnabled="{Binding IsAdmin}"/>
-            <Button Content="Редактировать" Width="120" Height="28" Margin="0,0,10,0" 
-                    Command="{Binding EditRoomCommand}" IsEnabled="{Binding IsAdmin}"/>
-            <Button Content="Удалить" Width="120" Height="28" Margin="0,0,10,0" Background="#FF5252" Foreground="White" 
-                    Command="{Binding DeleteRoomCommand}" IsEnabled="{Binding IsAdmin}"/>
+        <StackPanel Grid.Row="2"
+                Orientation="Horizontal"
+                Margin="0,0,0,10">
+            <Button Content="Добавить номер"
+                    Width="120"
+                    Height="28"
+                    Margin="0,0,10,0"
+                    Command="{Binding AddRoomCommand}"
+                    IsEnabled="{Binding IsAdmin}"/>
+            <Button Content="Редактировать"
+                    Width="120"
+                    Height="28"
+                    Margin="0,0,10,0"
+                    Command="{Binding EditRoomCommand}"
+                    IsEnabled="{Binding IsAdmin}"/>
+            <Button Content="Удалить"
+                    Width="120"
+                    Height="28"
+                    Margin="0,0,10,0"
+                    Background="#FF5252"
+                    Foreground="White"
+                    Command="{Binding DeleteRoomCommand}"
+                    IsEnabled="{Binding IsAdmin}"/>
         </StackPanel>
 
         <!-- 3. Список номеров -->
-        <DataGrid Grid.Row="3" 
-                  ItemsSource="{Binding RoomsView}" 
-                  AutoGenerateColumns="False" 
+        <DataGrid Grid.Row="3"
+                  ItemsSource="{Binding RoomsView}"
+                  AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   SelectionMode="Single"
                   GridLinesVisibility="Horizontal"
+                  HorizontalGridLinesBrush="#E0E0E0"
+                  Background="White"
+                  BorderBrush="#E0E0E0"
+                  BorderThickness="0,1,0,0"
                   RowBackground="White"
-                  AlternatingRowBackground="#F9F9F9">
+                  AlternatingRowBackground="#F8F9FA"
+                  FontSize="13"
+                  FontFamily="Segoe UI"
+                  CanUserResizeColumns="True"
+                  ColumnHeaderHeight="45">
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background"
+                            Value="#1976D2"/>
+                    <Setter Property="Foreground"
+                            Value="White"/>
+                    <Setter Property="FontWeight"
+                            Value="SemiBold"/>
+                    <Setter Property="Padding"
+                            Value="15,10"/>
+                    <Setter Property="BorderThickness"
+                            Value="0,0,1,0"/>
+                    <Setter Property="BorderBrush"
+                            Value="#1565C0"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Padding"
+                            Value="15,8"/>
+                    <Setter Property="BorderThickness"
+                            Value="0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridCell">
+                                <Border Background="{TemplateBinding Background}"
+                                        Padding="{TemplateBinding Padding}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                Value="True">
+                            <Setter Property="Background"
+                                    Value="#E3F2FD"/>
+                            <Setter Property="Foreground"
+                                    Value="#1976D2"/>
+                            <Setter Property="FontWeight"
+                                    Value="SemiBold"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                Value="True">
+                            <Setter Property="Background"
+                                    Value="#F5F5F5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Number}" Width="80"/>
-                <DataGridTextColumn Header="Тип" Binding="{Binding RoomType.Name}" Width="120"/>
-                <DataGridTextColumn Header="Этаж" Binding="{Binding Floor}" Width="60"/>
-                <DataGridTextColumn Header="Цена/сутки" Binding="{Binding PricePerDay, StringFormat={}{0:N0} ₽}" Width="100"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100"/>
-                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
+                <DataGridTextColumn Header="Номер"
+                        Binding="{Binding Number}"
+                        Width="90"/>
+                <DataGridTextColumn Header="Тип"
+                        Binding="{Binding RoomType.Name}"
+                        Width="130"/>
+                <DataGridTextColumn Header="Этаж"
+                        Binding="{Binding Floor}"
+                        Width="70"/>
+                <DataGridTextColumn Header=" Цена/сутки"
+                        Binding="{Binding PricePerDay, StringFormat={}{0:N0} ₽}"
+                        Width="120"/>
+                <DataGridTextColumn Header="Статус"
+                        Binding="{Binding Status}"
+                        Width="120"/>
+                <DataGridTextColumn Header="Описание"
+                        Binding="{Binding Description}"
+                        Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
