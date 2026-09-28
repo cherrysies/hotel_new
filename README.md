@@ -13,4 +13,4 @@ cd HotelApp
 dotnet run
 ```
 ## Автор
-> сука я + qwen любимый
+> автор....
