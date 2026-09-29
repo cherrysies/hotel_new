@@ -12,5 +12,10 @@ docker-compose up -d
 cd HotelApp
 dotnet run
 ```
+# Доступные пользователи:
+admin(admin123)
+client1(client123)
+manager(manager123)
+
 ## Автор
 > автор....
